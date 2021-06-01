@@ -16,6 +16,7 @@ function makeDataGenerator(items) {
   return function getNextData() {
     const item = items[itemIndex % items.length];
     itemIndex += 1;
+    console.log("item", { ...item });
     return { ...item, id: itemIndex };
   };
 }

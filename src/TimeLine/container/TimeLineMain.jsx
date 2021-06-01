@@ -12,6 +12,7 @@ const TimeLineMain = () => {
 
   const onAdd = () => {
     const timeline = getNextTimeline();
+
     dispatch(addTimeline(timeline));
   };
 

@@ -8,7 +8,6 @@ export default function createItemsLogic(name) {
   const add = (item) => ({ type: ADD, item });
   const remove = (item) => ({ type: REMOVE, item });
   const edit = (item) => ({ type: EDIT, item });
-
   const reducer = createReducer(
     { [name]: [] },
     {
