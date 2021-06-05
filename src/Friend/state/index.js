@@ -1,7 +1,7 @@
-import createReducer from "../Common/createReducer";
-import createItemsLogic from "../Common/createItemsLogic";
-import mergeReducers from "../Common/mergeReducers";
-import { MAX_AGE_LIMIT, MAX_SHOW_LIMIT } from "./common";
+import createReducer from "../../Common/createReducer";
+import createItemsLogic from "../../Common/createItemsLogic";
+import mergeReducers from "../../Common/mergeReducers";
+import { MAX_AGE_LIMIT, MAX_SHOW_LIMIT } from "../common";
 
 const {
   add,

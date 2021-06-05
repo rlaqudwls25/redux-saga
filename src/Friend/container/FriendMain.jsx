@@ -2,25 +2,27 @@ import React from "react";
 import { getNextFriend } from "../../Common/mockData";
 import { addFriend, setAgeLimit, setShowLimit } from "../state";
 import FriendList from "../components/FriendList";
-import { useSelector, useDispatch } from "react-redux";
 import NumberSelect from "../components/NumberSelect";
+import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import { MAX_AGE_LIMIT, MAX_SHOW_LIMIT } from "../common";
+import {
+  getAgeLimit,
+  getShowLimit,
+  getFriendWithAgeLimit,
+  getFriendWithAgeShowLimit,
+} from "../state/selector";
 
 const FriendMain = () => {
   const [ageLimit, showLimit, friendsWithAgeLimit, friendsWithAgeShowLimit] =
-    useSelector((state) => {
-      const { ageLimit, showLimit, friends } = state.friend.friends;
-      const friendsWithAgeLimit = friends.filter(
-        (item) => item.age <= ageLimit
-      );
-
-      return [
-        ageLimit,
-        showLimit,
-        friendsWithAgeLimit,
-        friendsWithAgeShowLimit.slice(0, showLimit),
-      ];
-    });
+    useSelector(
+      (state) => [
+        getAgeLimit(state),
+        getShowLimit(state),
+        getFriendWithAgeLimit(state),
+        getFriendWithAgeShowLimit(state),
+      ],
+      shallowEqual
+    );
 
   const dispatch = useDispatch();
 
@@ -34,7 +36,6 @@ const FriendMain = () => {
   return (
     <div>
       <button onClick={onAdd}>친구 추가</button>
-      {/* <FriendList friends={friends} /> */}
       <NumberSelect
         onChange={(v) => dispatch(setAgeLimit(v))}
         value={ageLimit}
