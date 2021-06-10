@@ -8,6 +8,7 @@ const TimeLineMain = () => {
   const dispatch = useDispatch();
   const timelines = useSelector((state) => state.timeline.timelines);
   const isLoading = useSelector((state) => state.timeline.isLoading);
+  const error = useSelector((state) => state.timeline.error);
 
   const onAdd = () => {
     const timeline = getNextTimeline();
@@ -26,6 +27,7 @@ const TimeLineMain = () => {
       <button onClick={onAdd}>타임라인 추가</button>
       <TimeLineList timelines={timelines} onLike={onLike} />
       {isLoading && <p>전송 중...</p>}
+      {error && <p>에러 발생...</p>}
     </div>
   );
 };
